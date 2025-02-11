@@ -57,6 +57,18 @@
         <br>
         <p><em>Site in progress - more to come!</em></p>
     </div>
-    
+   <script>
+// Traffic
+    const request = new Request("https://server.sgambapps.com/?site=mathMagic", {
+        method: "POST",
+    });
+    fetch(request)
+    .then(res => {
+        if (res.ok) {
+        console.log("visit counted");
+        }
+    })
+
+   </script> 
 </body>
 </html>
