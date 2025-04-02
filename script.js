@@ -7,6 +7,13 @@ let op = "";
 const urlParams = new URLSearchParams(window.location.search);
 const type = urlParams.get("type");
 
+const infoPageLink = document.getElementById("infoPageLink");
+infoPageLink.href = "./infoPage.html?type=" + type;
+if (type === "multiplicationTables") {
+    infoPageLink.hidden = true;
+} else {
+    infoPageLink.hidden = false;
+}
 // Generation is for generating the right kind of question.
 // Check is for checking the right kind of question.
 let functionToUse = generateTwoDigitNumEndIn5;
@@ -46,12 +53,18 @@ function generateTwoDigitNum(redo=false) {
 
 // Functions for simplifying addition.
 function generateTwoLargerNumbers(redo=false) {
-    op = "+";
+    op = type === "simplifySubtract" ? "-" : "+";
     if (!redo) {
         currentNumber = getRandInt(999, 100);
         secondCurrentNum = getRandInt(999, 10);
+        if (op === "-" && secondCurrentNum > currentNumber) {
+            const temp = secondCurrentNum;
+            secondCurrentNum = currentNumber;
+            currentNumber = temp;
+        }
+
     }
-    questionOutput.innerText = `What is ${currentNumber} + ${secondCurrentNum}?`;
+    questionOutput.innerText = `What is ${currentNumber} ${op} ${secondCurrentNum}?`;
     questionInput.value = "";
 }
 
@@ -69,6 +82,9 @@ function checkAnswer() {
         case "**":
             correctAnswer = currentNumber**secondCurrentNum;
             break;
+        case "-":
+            correctAnswer = currentNumber-secondCurrentNum;
+            break;
         default:
             correctAnswer = 0;
             break;
@@ -84,9 +100,13 @@ function checkAnswer() {
 // For multiplication table practice
 function generateMultiplicationQuestion(redo=false) {
     op = "*";
+    max1 = type === "twoByOne" ? 99 : 10;
+    max2 = 12;
+    min1 = type === "twoByOne" ? 10 : 2;
+    min2 = 2;
     if (!redo) {
-        currentNumber = getRandInt(10, 2);
-        secondCurrentNum = getRandInt(10, 2);
+        currentNumber = getRandInt(max1, min1);
+        secondCurrentNum = getRandInt(max2, min2);
     }
     questionOutput.innerText = `What is ${currentNumber} multiplied by ${secondCurrentNum}?`;
     questionInput.value = "";
@@ -129,6 +149,12 @@ switch (type) {
         functionToUse = generateTwoLargerNumbers;
         break;
     case "multiplicationTables":
+        functionToUse = generateMultiplicationQuestion;
+        break;
+    case "simplifySubtract":
+        functionToUse = generateTwoLargerNumbers;
+        break;
+    case "twoByOne":
         functionToUse = generateMultiplicationQuestion;
         break;
     default:

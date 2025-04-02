@@ -29,6 +29,18 @@ const simplifyAddition = {
     practice: "simplifyAdd"
 }
 
+const simplifySubtract = {
+    title: "Simplify your subtraction problems:",
+    text: "Just like breaking down the addition problems you want to work left to right. For 963 - 342 you would do 963 - 300 = 663, 663 - 40 = 623, and 623 - 2 = 621.",
+    practice: "simplifySubtract"
+}
+
+const twoByOne = {
+    title: "Two digits by one digit multiplication.",
+    text: "Working left to right you want to break the problem down. For example 43 x 3: You would do 40 x 3 (which is the same as 4x3 multiplied by 10) 120 + 3 x 3 or 120 + 9 = 129. It's useful to know your multiplication tables to 10 for these problems!",
+    practice: "twoByOne"
+}
+
 switch (type) {
     case "multiplyEleven":
         infoVarToUse = multiplyEleven;
@@ -38,6 +50,12 @@ switch (type) {
         break;
     case "simplifyAdd":
         infoVarToUse = simplifyAddition;
+        break;
+    case "simplifySubtract":
+        infoVarToUse = simplifySubtract;
+        break;
+    case "twoByOne":
+        infoVarToUse = twoByOne;
         break;
     default:
         infoVarToUse = multiplyEleven;

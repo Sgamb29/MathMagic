@@ -45,6 +45,26 @@
 
         <div class="card">
             <h3 class="title">
+                Simplify your subtraction problems.
+            </h3>
+            <div class="buttonContainer">
+                <button class="navButton"><a href="infoPage.html?type=simplifySubtract">Learn</a></button>
+                <button class="navButton"><a href="questionPage.html?type=simplifySubtract">Practice</a></button>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3 class="title">
+                2 digits by 1 digit Multiplication.
+            </h3>
+            <div class="buttonContainer">
+                <button class="navButton"><a href="infoPage.html?type=twoByOne">Learn</a></button>
+                <button class="navButton"><a href="questionPage.html?type=twoByOne">Practice</a></button>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3 class="title">
                 Extra: Practice Multiplication Tables to 10.
             </h3>
             <div class="buttonContainer">
@@ -57,18 +77,6 @@
         <br>
         <p><em>Site in progress - more to come!</em></p>
     </div>
-   <script>
-// Traffic
-    const request = new Request("https://server.sgambapps.com/?site=mathMagic", {
-        method: "POST",
-    });
-    fetch(request)
-    .then(res => {
-        if (res.ok) {
-        console.log("visit counted");
-        }
-    })
-
-   </script> 
+   <script src="homeScript.js"></script> 
 </body>
 </html>

@@ -10,6 +10,7 @@
     <div class="container">
         <div class="nav">
         <a href="index.html">Back To Home</a>
+        <a id="infoPageLink" href="infoPage.html">Learn this skill.</a>
         </div>
         <h3 class="question" id="questionOutput"></h3>
         <input type="number" id="questionInput" placeholder="Type answer here.">
@@ -17,6 +18,18 @@
         <button class="navButton" onclick="checkAnswer()">Submit</button>
         <button class="navButton" onclick="redoQuestion()">Redo</button>
         <button class="navButton" onclick="generateQuestion()">Next Question</button>
+        </div>
+        <br><br><br>
+        <label for="morePractice">More Practice:</label>
+        <div name="morePractice" class="buttonContainer">
+
+            <button class="navButton"><a href="questionPage.html?type=multiplyEleven">Multiply 11</a></button>
+            <button class="navButton"><a href="questionPage.html?type=squareNums">Square 2 digit that ends in 5</a></button>
+            <button class="navButton"><a href="questionPage.html?type=simplifyAdd">Simplify Addition</a></button>
+            <button class="navButton"><a href="questionPage.html?type=simplifySubtract">Simplify Subtraction</a></button>
+            <button class="navButton"><a href="questionPage.html?type=twoByOne">2 digits by 1 digit multiplication</a></button>
+
+            <button class="navButton"><a href="questionPage.html?type=multiplicationTables">Multiplication Tables to 10</a></button>
         </div>
     </div>
    <script src="script.js"></script> 
