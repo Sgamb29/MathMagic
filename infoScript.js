@@ -41,6 +41,18 @@ const twoByOne = {
     practice: "twoByOne"
 }
 
+const threeByOne = {
+    title: "Three digits by one digit multiplication.",
+    text: "Working left to right you want to break the problem down. For example 435 x 5: You would do 400 x 5 (which is the same as 4x5 multiplied by 100) 2000. Then you would do 30 x 5 = 150, so we're at 2150, and then finally add 5 x 5 = 25 to get the answer of 2175.",
+    practice: "threeByOne"
+}
+
+const twoByTwo = {
+    title: "Two digits by two digits multiplication.",
+    text: "1. The Addition Method: You break up one of the numbers and then multiply, adding your answers together. Example: 43 x 22, first do 20 x 43 = 860 and then 2 x 43 = 86. 860 + 86 = 946 which is your answer!\n2. The Subtraction Method: Useful is one of the numbers ends in an 8 or 9. Example: 88 x 64. You would round 88 to 90 and then multiply: 60 x 90 = 5400, 4 x 90 = 360, so we're at 5760 and then subtract the extra we multiplied by which is 64 x 2 = 128, 5760 - 128 = 5632 and there's our answer.\n3. The Factoring Method: You break down one of the numbers into two factors and multiply so you only have to do one 2 by 1 question and one 3 by 1 question. Example: 64 x 56. 56 = 8 x 7 so you would do 64 x 8 = 512 and then 512 x 7 = 3584 and there's our answer.",
+    practice: "twoByTwo"
+}
+
 switch (type) {
     case "multiplyEleven":
         infoVarToUse = multiplyEleven;
@@ -56,6 +68,12 @@ switch (type) {
         break;
     case "twoByOne":
         infoVarToUse = twoByOne;
+        break;
+    case "threeByOne":
+        infoVarToUse = threeByOne;
+        break;
+    case "twoByTwo":
+        infoVarToUse = twoByTwo;
         break;
     default:
         infoVarToUse = multiplyEleven;

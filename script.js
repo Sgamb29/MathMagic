@@ -100,10 +100,37 @@ function checkAnswer() {
 // For multiplication table practice
 function generateMultiplicationQuestion(redo=false) {
     op = "*";
-    max1 = type === "twoByOne" ? 99 : 10;
-    max2 = 12;
-    min1 = type === "twoByOne" ? 10 : 2;
-    min2 = 2;
+    let max1;
+    let max2;
+    let min1;
+    let min2;
+    switch (type) {
+        case "twoByOne":
+            max1 = 99;
+            max2 = 12;
+            min1 = 10;
+            min2 = 2;
+            break;
+        case "threeByOne":
+            max1 = 999;
+            max2 = 10;
+            min1 = 100;
+            min2 = 2;
+            break;
+        case "twoByTwo":
+            max1 = 99;
+            max2 = 99;
+            min1 = 10;
+            min2 = 10;
+            break;
+        default:
+            max1 = 10;
+            max2 = 12;
+            min1 = 2;
+            min2 = 2;
+            break;
+
+    }
     if (!redo) {
         currentNumber = getRandInt(max1, min1);
         secondCurrentNum = getRandInt(max2, min2);
@@ -157,11 +184,17 @@ switch (type) {
     case "twoByOne":
         functionToUse = generateMultiplicationQuestion;
         break;
+    case "threeByOne":
+        functionToUse = generateMultiplicationQuestion;
+        break;
+    case "twoByTwo":
+        functionToUse = generateMultiplicationQuestion;
+        break;
     default:
         functionToUse = generateTwoDigitNumEndIn5;
         break;
 }
 
-
+// console.log(type);
 // Initial setup question.
 functionToUse();
