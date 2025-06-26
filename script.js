@@ -2,10 +2,12 @@
 let currentNumber = 0;
 let secondCurrentNum = 0;
 let op = "";
+let dailyEightInProgess = false;
+let dailyEightCount = 0;
 
 // Get what type of question to use based off of what link is clicked on home page.
 const urlParams = new URLSearchParams(window.location.search);
-const type = urlParams.get("type");
+let type = urlParams.get("type");
 
 const infoPageLink = document.getElementById("infoPageLink");
 infoPageLink.href = "./infoPage.html?type=" + type;
@@ -20,10 +22,25 @@ let functionToUse = generateTwoDigitNumEndIn5;
 
 const questionOutput = document.getElementById("questionOutput");
 const questionInput = document.getElementById("questionInput");
+const extraNote = document.getElementById("extraNote");
+if (type !== "dailyEight") {
+    extraNote.hidden = true;
+} else {
+    updateExtraNoteText();
+}
 
+function updateExtraNoteText() {
+    extraNote.innerText = "Daily 8 (aka endless random questions)\n Questions Done: " + dailyEightCount.toString();
+}
 
 function generateQuestion() {
-    functionToUse();
+    if (dailyEightInProgess) {
+        dailyEightCount += 1;
+        updateExtraNoteText();
+        dailyEightQuestions();
+    } else {
+        functionToUse();
+    }
 }
 
 // Functions for Squaring numbers that end in 5
@@ -140,6 +157,31 @@ function generateMultiplicationQuestion(redo=false) {
 
 }
 
+// Available URL search param types
+const squareType = "squareNums";
+const elevenType = "multiplyEleven";
+const addType = "simplifyAdd";
+const subtractType = "simplifySubtract";
+const twoByOneType = "twoByOne";
+const threeByOneType = "threeByOne";
+const twoByTwoType = "twoByTwo";
+
+function dailyEightQuestions() {
+    dailyEightInProgess = true;
+    if (dailyEightCount === 8) {
+        questionOutput.innerText = "Daily 8 Complete! Continue?\n" + questionOutput.innerText;
+        return;
+    }
+    const types = [squareType, elevenType, addType, subtractType,
+        twoByOneType, threeByOneType, twoByTwoType
+    ];
+    type = types[getRandInt(types.length)];
+    getQuestionFunctionByType();
+    infoPageLink.href = "./infoPage.html?type=" + type;
+    functionToUse();
+}
+
+
 
 // Keypresses for questions and next question instead of using buttons.
 document.addEventListener("keydown", (e) => {
@@ -148,7 +190,7 @@ document.addEventListener("keydown", (e) => {
     }
     if (e.key === " ") {
         // generateTwoDigitNumEndIn5();
-        functionToUse();
+        generateQuestion();
     }
 })
 
@@ -165,36 +207,42 @@ function redoQuestion() {
 
 }
 
-switch (type) {
-    case "squareNums":
-        functionToUse = generateTwoDigitNumEndIn5;
-        break;
-    case "multiplyEleven":
-        functionToUse = generateTwoDigitNum;
-        break;
-    case "simplifyAdd":
-        functionToUse = generateTwoLargerNumbers;
-        break;
-    case "multiplicationTables":
-        functionToUse = generateMultiplicationQuestion;
-        break;
-    case "simplifySubtract":
-        functionToUse = generateTwoLargerNumbers;
-        break;
-    case "twoByOne":
-        functionToUse = generateMultiplicationQuestion;
-        break;
-    case "threeByOne":
-        functionToUse = generateMultiplicationQuestion;
-        break;
-    case "twoByTwo":
-        functionToUse = generateMultiplicationQuestion;
-        break;
-    default:
-        functionToUse = generateTwoDigitNumEndIn5;
-        break;
+function getQuestionFunctionByType() {
+    switch (type) {
+        case "squareNums":
+            functionToUse = generateTwoDigitNumEndIn5;
+            break;
+        case "multiplyEleven":
+            functionToUse = generateTwoDigitNum;
+            break;
+        case "simplifyAdd":
+            functionToUse = generateTwoLargerNumbers;
+            break;
+        case "multiplicationTables":
+            functionToUse = generateMultiplicationQuestion;
+            break;
+        case "simplifySubtract":
+            functionToUse = generateTwoLargerNumbers;
+            break;
+        case "twoByOne":
+            functionToUse = generateMultiplicationQuestion;
+            break;
+        case "threeByOne":
+            functionToUse = generateMultiplicationQuestion;
+            break;
+        case "twoByTwo":
+            functionToUse = generateMultiplicationQuestion;
+            break;
+        case "dailyEight":
+            functionToUse = dailyEightQuestions;
+            break;
+        default:
+            functionToUse = generateTwoDigitNumEndIn5;
+            break;
+    }
 }
 
 // console.log(type);
 // Initial setup question.
+getQuestionFunctionByType();
 functionToUse();
