@@ -30,7 +30,8 @@ if (type !== "dailyEight") {
 }
 
 function updateExtraNoteText() {
-    extraNote.innerText = "Daily 8 (aka endless random questions)\n Questions Done: " + dailyEightCount.toString();
+    const doneStr = dailyEightCount >= 8 ? " Daily 8 Done!" : "";
+    extraNote.innerText = "Daily 8 (aka endless random questions)\n Questions Done: " + dailyEightCount.toString() + "\n" + doneStr;
 }
 
 function generateQuestion() {
@@ -168,10 +169,6 @@ const twoByTwoType = "twoByTwo";
 
 function dailyEightQuestions() {
     dailyEightInProgess = true;
-    if (dailyEightCount === 8) {
-        questionOutput.innerText = "Daily 8 Complete! Continue?\n" + questionOutput.innerText;
-        return;
-    }
     const types = [squareType, elevenType, addType, subtractType,
         twoByOneType, threeByOneType, twoByTwoType
     ];
