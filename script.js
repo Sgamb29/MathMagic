@@ -42,6 +42,7 @@ function generateQuestion() {
     } else {
         functionToUse();
     }
+    questionInput.focus();
 }
 
 // Functions for Squaring numbers that end in 5

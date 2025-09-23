@@ -37,14 +37,14 @@ function makeTrafficCall() {
         })
         .catch(err => console.log(err));
 
-        setCookie("lastFetch", DOTW.toString(), 10000);
+        setCookie("lastFetchMath", DOTW.toString(), 10000);
         console.log("cookie set");
     }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
     try {
-        const ld = getCookie("lastFetch");
+        const ld = getCookie("lastFetchMath");
         lastFetchCall = ld !== "" ? parseInt(ld) : "";
         makeTrafficCall();
     } catch (e) {
