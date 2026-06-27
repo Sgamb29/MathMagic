@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Math Magic Practice</title>
+</head>
+<body>
+    <div class="container">
+        <div class="nav">
+        <a href="index.html">Back To Home</a>
+        </div>
+        <p><em>Create your questions! <br>Input the format: <br>num1digits,num2digits,operations<br><br>
+        Example: <strong>2,2,+-/*</strong> will give two 2 digit numbers with addition, subtraction, division, and multiplication.<br>
+        <strong>1,2,+-</strong>will give you a one digit number, a two digit number and addition and subtraction.<br>
+        Note: Round division to 2 decimal places.</em></p>
+        <input type="text" placeholder="Enter custom format" id="formatInput">
+        <button class="navButton" onclick="parseFormat()">Create</button>
+        <p class="description" id="extraNote"><em></em></p>
+        <h3 class="question" id="questionOutput"></h3>
+        <input type="number" id="questionInput" placeholder="Type answer here.">
+        <div class="buttonContainer">
+        <button class="navButton" onclick="checkAnswer()">Submit</button>
+        <button class="navButton" onclick="redoQuestion()">Redo</button>
+        <button class="navButton" onclick="generateQuestion()">Next Question</button>
+        </div>
+        <br><br><br>
+    </div>
+   <script src="customScript.js"></script> 
+</body>
+</html>
