@@ -6,6 +6,8 @@ const formatKey = "formatHistory";
 const questionOutput = document.getElementById("questionOutput");
 const questionInput = document.getElementById("questionInput");
 const extraNote = document.getElementById("extraNote");
+const negativeToggle = document.getElementById("negativeToggle");
+
 
 let num1Digits = 1;
 let num2Digits = 1;
@@ -51,10 +53,24 @@ function generateQuestion() {
     if (!formatParsed) {
         return;
     }
+    questionInput.value = "";
     currentNumber = getVarLenNum(num1Digits);
     secondCurrentNum = getVarLenNum(num2Digits);
     op = operatorOptions[getRandInt(operatorOptions.length)];
     questionOutput.innerText = `What is ${currentNumber} ${op} ${secondCurrentNum}?`;
+    toggleNegativeButton(op, currentNumber, secondCurrentNum);
+}
+
+function toggleNegative() {
+    questionInput.value = parseInt(questionInput.value) * -1;
+}
+
+function toggleNegativeButton(op, n1, n2) {
+    if (op === "-" && n1 - n2 < 0) {
+        negativeToggle.hidden = false;
+        return;
+    }
+    negativeToggle.hidden = true;
 }
 
 function getVarLenNum(numDigits) {
@@ -116,6 +132,7 @@ function redoQuestion() {
     presses = 0; // Reset if want to redo question
     questionInput.value = "";
     questionOutput.innerText = `What is ${currentNumber} ${op} ${secondCurrentNum}?`;
+    toggleNegativeButton(op, currentNumber, secondCurrentNum);
 
 }
 
