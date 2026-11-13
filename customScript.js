@@ -59,6 +59,8 @@ function generateQuestion() {
     op = operatorOptions[getRandInt(operatorOptions.length)];
     questionOutput.innerText = `What is ${currentNumber} ${op} ${secondCurrentNum}?`;
     toggleNegativeButton(op, currentNumber, secondCurrentNum);
+    // Reset enter presses
+    presses = 0;
 }
 
 function toggleNegative() {
