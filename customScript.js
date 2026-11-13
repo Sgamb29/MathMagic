@@ -139,7 +139,7 @@ function redoQuestion() {
 }
 
 document.addEventListener("keydown", (e) => {
-    if (presses === 1) {
+    if (presses === 1 && e.key === 'Enter') {
         generateQuestion();
         presses = 0;
         questionInput.value = "";
